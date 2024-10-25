@@ -2,48 +2,37 @@ import { FC, useMemo } from 'react';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
+import { useSelector } from '../../services/store';
+import { selectFeedOrders, selectIngredientList } from '@slices';
+import { useParams } from 'react-router-dom';
 
 export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
-  const orderData = {
-    createdAt: '',
-    ingredients: [],
-    _id: '',
-    status: '',
-    name: '',
-    updatedAt: 'string',
-    number: 0
-  };
+  const { number } = useParams();
+  const orders = useSelector(selectFeedOrders);
+  const ingredients = useSelector(selectIngredientList);
 
-  const ingredients: TIngredient[] = [];
+  const orderData = orders.find((item) => item.number.toString() === number);
 
-  /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;
 
     const date = new Date(orderData.createdAt);
 
-    type TIngredientsWithCount = {
-      [key: string]: TIngredient & { count: number };
-    };
-
     const ingredientsInfo = orderData.ingredients.reduce(
-      (acc: TIngredientsWithCount, item) => {
-        if (!acc[item]) {
-          const ingredient = ingredients.find((ing) => ing._id === item);
-          if (ingredient) {
-            acc[item] = {
-              ...ingredient,
-              count: 1
-            };
+      (acc, item) => {
+        const ingredient = ingredients.find((ing) => ing._id === item);
+
+        if (ingredient) {
+          if (!acc[item]) {
+            acc[item] = { ...ingredient, count: 1 };
+          } else {
+            acc[item].count++;
           }
-        } else {
-          acc[item].count++;
         }
 
         return acc;
       },
-      {}
+      {} as Record<string, TIngredient & { count: number }>
     );
 
     const total = Object.values(ingredientsInfo).reduce(
