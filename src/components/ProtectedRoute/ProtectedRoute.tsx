@@ -1,7 +1,6 @@
-// ProtectedRoute.tsx
 import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector } from '../../services/store';
 import { selectIsAuthenticated } from '@slices';
 
 type ProtectedRouteProps = {

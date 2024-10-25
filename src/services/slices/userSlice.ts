@@ -37,7 +37,10 @@ export const loginUserThunk = createAsyncThunk(
   'user/login',
   async (loginData: TLoginData, { rejectWithValue }) => {
     try {
-      return await loginUserApi(loginData);
+      const response = await loginUserApi(loginData);
+      setCookie('accessToken', response.accessToken);
+      localStorage.setItem('refreshToken', response.refreshToken);
+      return response;
     } catch (error: any) {
       return rejectWithValue(error.response?.data || error.message);
     }
@@ -210,6 +213,19 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.error =
           typeof payload === 'string' ? payload : 'Неизвестная ошибка';
+      })
+      .addCase(getUserApiThunk.pending, (state) => {
+        state.loginUserRequest = true;
+      })
+      .addCase(getUserApiThunk.rejected, (state) => {
+        state.loginUserRequest = false;
+        state.isAuthChecked = true;
+        state.isAuthenticated = false;
+      })
+      .addCase(getUserApiThunk.fulfilled, (state, action) => {
+        state.isAuthChecked = true;
+        state.isAuthenticated = true;
+        state.user = action.payload.user;
       });
   }
 });
