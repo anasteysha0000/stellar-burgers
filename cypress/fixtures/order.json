@@ -1,0 +1,63 @@
+{
+    "success": true,
+    "name": "В самое сердце",
+    "order": {
+      "createdAt": "2024-10-21T12:00:04.218Z",
+      "number": 57080,
+      "ingredients": [
+        {
+          "_id": "1234567890abcde001",
+          "name": "Хрустящая булочка B-500",
+          "type": "bun",
+          "proteins": 70,
+          "fat": 20,
+          "carbohydrates": 60,
+          "calories": 350,
+          "price": 150,
+          "image": "https://clck.ru/3EGVND",
+          "image_mobile": "https://clck.ru/3EGVND",
+          "image_large": "https://clck.ru/3EGVND",
+          "__v": 0
+        },
+        {
+          "_id": "1234567890abcde003",
+          "name": "Начинка из фантастического филе солнечного краба",
+          "type": "main",
+          "proteins": 200,
+          "fat": 80,
+          "carbohydrates": 40,
+          "calories": 500,
+          "price": 1200,
+          "image": "https://clck.ru/3EGVyK",
+          "image_mobile": "https://clck.ru/3EGVyK",
+          "image_large": "https://clck.ru/3EGVyK",
+          "__v": 0
+        },
+        {
+          "_id": "1234567890abcde002",
+          "name": "Соус Острый Туманный",
+          "type": "sauce",
+          "proteins": 15,
+          "fat": 10,
+          "carbohydrates": 30,
+          "calories": 80,
+          "price": 50,
+          "image": "https://clck.ru/3EGVoR",
+          "image_mobile": "https://clck.ru/3EGVoR",
+          "image_large": "https://clck.ru/3EGVoR",
+          "__v": 0
+        }
+      ]
+    },
+    "owner": {
+      "name": "Сергей Лазарев",
+      "email": "lazarevsergey@email.ru",
+      "createdAt": "2024-10-10T06:09:35.108Z",
+      "updatedAt": "2024-10-21T11:03:08.779Z"
+    },
+    "price": 1500,
+    "status": "done",
+    "updatedAt": "2024-10-21T12:00:04.998Z",
+    "_id": "67164244d829be001c777709"
+  }
+  

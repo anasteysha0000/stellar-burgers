@@ -5,11 +5,13 @@ import { TOrder } from '@utils-types';
 interface IInitialState {
   orderRequest: boolean;
   orderModalData: TOrder | null;
+  error: string | null;
 }
 
-const initialState: IInitialState = {
+export const initialOrderState: IInitialState = {
   orderRequest: false,
-  orderModalData: null
+  orderModalData: null,
+  error: null
 };
 
 export const orderBurgerApiThunk = createAsyncThunk(
@@ -19,14 +21,14 @@ export const orderBurgerApiThunk = createAsyncThunk(
       const response = await orderBurgerApi(data);
       return response;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue((error as Error).message);
     }
   }
 );
 
 const orderSlice = createSlice({
   name: 'order',
-  initialState,
+  initialState: initialOrderState,
   reducers: {
     deleteOrderModal: (state) => {
       state.orderModalData = null;
@@ -36,22 +38,25 @@ const orderSlice = createSlice({
     builder
       .addCase(orderBurgerApiThunk.pending, (state) => {
         state.orderRequest = true;
+        state.error = null;
       })
-      .addCase(orderBurgerApiThunk.rejected, (state) => {
+      .addCase(orderBurgerApiThunk.rejected, (state, action) => {
         state.orderRequest = false;
+        state.error = action.payload as string;
       })
       .addCase(
         orderBurgerApiThunk.fulfilled,
         (state, action: PayloadAction<{ order: TOrder }>) => {
           state.orderRequest = false;
           state.orderModalData = action.payload.order;
+          state.error = null;
         }
       );
   }
 });
 
 export const { deleteOrderModal } = orderSlice.actions;
-export default orderSlice.reducer;
+export const orderReducer = orderSlice.reducer;
 
 export const selectOrderRequest = (state: { order: IInitialState }) =>
   state.order.orderRequest;

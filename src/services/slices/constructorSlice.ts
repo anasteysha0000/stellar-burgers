@@ -9,7 +9,7 @@ export interface IConstructorState {
   orderRequest: boolean;
 }
 
-export const constructorInitialState: IConstructorState = {
+export const initialConstructorState: IConstructorState = {
   constructorItems: {
     bun: null,
     ingredients: []
@@ -19,7 +19,7 @@ export const constructorInitialState: IConstructorState = {
 
 const constructorSlice = createSlice({
   name: 'burgerConstructor',
-  initialState: constructorInitialState,
+  initialState: initialConstructorState,
   reducers: {
     moveIngredient: (
       state,
@@ -77,4 +77,4 @@ export const {
   deleteConstructorItems
 } = constructorSlice.actions;
 
-export default constructorSlice.reducer;
+export const constructorReducer = constructorSlice.reducer;

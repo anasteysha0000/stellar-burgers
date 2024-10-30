@@ -23,7 +23,7 @@ interface IInitialState {
   userOrders: TOrder[];
 }
 
-const initialState: IInitialState = {
+export const initialUserState: IInitialState = {
   isAuthChecked: false,
   isAuthenticated: false,
   loginUserRequest: false,
@@ -126,7 +126,7 @@ export const getUserOrders = createAsyncThunk(
 
 const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     setUserData: (state, action: PayloadAction<TUser>) => {
       state.user = action.payload;
@@ -230,7 +230,7 @@ const userSlice = createSlice({
   }
 });
 
-export default userSlice.reducer;
+export const userReducer = userSlice.reducer;
 
 export const { setUserData, clearUserData, clearUserError } = userSlice.actions;
 
