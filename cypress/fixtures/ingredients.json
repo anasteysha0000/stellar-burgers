@@ -1,0 +1,47 @@
+{
+  "success": true,
+  "data": [
+    {
+      "_id": "1234567890abcde001",
+      "name": "Хрустящая булочка B-500",
+      "type": "bun",
+      "proteins": 70,
+      "fat": 20,
+      "carbohydrates": 60,
+      "calories": 350,
+      "price": 150,
+      "image": "https://code.s3.yandex.net/react/code/bun-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/bun-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/bun-02-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "1234567890abcde002",
+      "name": "Соус Острый Туманный",
+      "type": "sauce",
+      "proteins": 15,
+      "fat": 10,
+      "carbohydrates": 30,
+      "calories": 80,
+      "price": 50,
+      "image": "https://code.s3.yandex.net/react/code/sauce-02.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/sauce-02-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/sauce-02-large.png",
+      "__v": 0
+    },
+    {
+      "_id": "1234567890abcde003",
+      "name": "Начинка из фантастического филе солнечного краба",
+      "type": "main",
+      "proteins": 200,
+      "fat": 80,
+      "carbohydrates": 40,
+      "calories": 500,
+      "price": 1200,
+      "image": "https://code.s3.yandex.net/react/code/meat-01.png",
+      "image_mobile": "https://code.s3.yandex.net/react/code/meat-01-mobile.png",
+      "image_large": "https://code.s3.yandex.net/react/code/meat-01-large.png",
+      "__v": 0
+    }
+  ]
+}
